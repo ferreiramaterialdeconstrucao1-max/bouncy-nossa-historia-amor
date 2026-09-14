@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://bouncy-nossa-historia-amor.base44.app/ -->
+<html lang="pt" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script>
+   (function () {
+  var proto = XMLHttpRequest.prototype;
+  var open = proto.open, setRequestHeader = proto.setRequestHeader, send = proto.send;
+  var TOKEN_KEY = 'base44_access_token';
+  var storedTokenHeader = function () {
+    try { return 'Bearer ' + localStorage.getItem(TOKEN_KEY); } catch (e) { return null; }
+  };
+  var forgetStoredToken = function () {
+    try { localStorage.removeItem(TOKEN_KEY); localStorage.removeItem('token'); } catch (e) {}
+  };
+
+  proto.open = function (method, url) {
+    this.__b44IsAuthCheck = /\/entities\/User\/me(\?|$)/.test(url);
+    return open.apply(this, arguments);
+  };
+
+  proto.setRequestHeader = function (name, value) {
+    if (this.__b44IsAuthCheck && name.toLowerCase() === 'authorization' && value === storedTokenHeader()) {
+      this.__b44SentToken = value;
+    }
+    return setRequestHeader.call(this, name, value);
+  };
+
+  proto.send = function () {
+    this.addEventListener('loadend', function () {
+      var rejectedTokenStillStored = this.status === 401 && this.__b44SentToken === storedTokenHeader();
+      if (rejectedTokenStillStored) forgetStoredToken();
+    });
+    return send.apply(this, arguments);
+  };
+})();
+  </script>
+  
+  <link href="https://media.base44.com/images/public/6aa7cda5b7f75237a7ad8ba4/4ef1cb896_logo.png" rel="icon" type="image/svg+xml">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="https://bouncy-nossa-historia-amor.base44.app/manifest.json" rel="manifest">
+  <link href="https://fonts.googleapis.com/" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect">
+  <link href="./css/fonts.css" rel="stylesheet">
+  <title>Antes de Nós — Nossa História</title>
+  <meta content="Antes de Nós: nossa história, desde o primeiro olhar até a vida que construímos juntos. Escrito por Natanael para Fernanda." name="description">
+  <script crossorigin="" src="./js/index.js" type="module">
+  </script>
+  <link crossorigin="" href="./css/styles.css" rel="stylesheet">
+  <script type="module">
+   if (window.self === window.top) {
+  let lastPath = "";
+  function getPageNameFromPath(path) {
+    const segments = path.split("/").filter(Boolean);
+    return segments[0] || null;
+  }
+  function trackPageView() {
+    const path = window.location.pathname;
+    if (path === lastPath) return;
+    lastPath = path;
+    const pageName = getPageNameFromPath(path) || "home";
+    const appId = "6aa7cda5b7f75237a7ad8ba4";
+    if (!appId) return;
+    fetch(`/api/app-logs/${appId}/log-user-in-app/${pageName}`, {
+      method: "POST",
+    }).catch(() => {});
+  }
+  const originalPushState = history.pushState.bind(history);
+  history.pushState = function (...args) {
+    originalPushState(...args);
+    trackPageView();
+  };
+  const originalReplaceState = history.replaceState.bind(history);
+  history.replaceState = function (...args) {
+    originalReplaceState(...args);
+    trackPageView();
+  };
+  window.addEventListener("popstate", trackPageView);
+  trackPageView();
+}
+  </script>
+  <meta content="yes" name="mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="ANTES DE NÓS" name="apple-mobile-web-app-title">
+  <script async="true" data-app-id="6aa7cda5b7f75237a7ad8ba4" data-platform-url="https://app.base44.com" src="./js/badge.js">
+  </script>
+ <style>
+      @keyframes badge-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .badge-spinner {
+        animation: badge-spin 1s linear infinite;
+      }
+      @keyframes base44-fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes base44-scale-in {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style><style type="text/css">[data-vaul-drawer]{touch-action:none;will-change:transform;transition:transform .5s cubic-bezier(.32, .72, 0, 1);animation-duration:.5s;animation-timing-function:cubic-bezier(0.32,0.72,0,1)}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=open]{animation-name:slideFromBottom}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=closed]{animation-name:slideToBottom}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=top][data-state=open]{animation-name:slideFromTop}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=top][data-state=closed]{animation-name:slideToTop}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=left][data-state=open]{animation-name:slideFromLeft}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=left][data-state=closed]{animation-name:slideToLeft}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=right][data-state=open]{animation-name:slideFromRight}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=right][data-state=closed]{animation-name:slideToRight}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=bottom]{transform:translate3d(0,var(--initial-transform,100%),0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=top]{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=left]{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=right]{transform:translate3d(var(--initial-transform,100%),0,0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=top]{transform:translate3d(0,var(--snap-point-height,0),0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=bottom]{transform:translate3d(0,var(--snap-point-height,0),0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=left]{transform:translate3d(var(--snap-point-height,0),0,0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=right]{transform:translate3d(var(--snap-point-height,0),0,0)}[data-vaul-overlay][data-vaul-snap-points=false]{animation-duration:.5s;animation-timing-function:cubic-bezier(0.32,0.72,0,1)}[data-vaul-overlay][data-vaul-snap-points=false][data-state=open]{animation-name:fadeIn}[data-vaul-overlay][data-state=closed]{animation-name:fadeOut}[data-vaul-animate=false]{animation:none!important}[data-vaul-overlay][data-vaul-snap-points=true]{opacity:0;transition:opacity .5s cubic-bezier(.32, .72, 0, 1)}[data-vaul-overlay][data-vaul-snap-points=true]{opacity:1}[data-vaul-drawer]:not([data-vaul-custom-container=true])::after{content:'';position:absolute;background:inherit;background-color:inherit}[data-vaul-drawer][data-vaul-drawer-direction=top]::after{top:initial;bottom:100%;left:0;right:0;height:200%}[data-vaul-drawer][data-vaul-drawer-direction=bottom]::after{top:100%;bottom:initial;left:0;right:0;height:200%}[data-vaul-drawer][data-vaul-drawer-direction=left]::after{left:initial;right:100%;top:0;bottom:0;width:200%}[data-vaul-drawer][data-vaul-drawer-direction=right]::after{left:100%;right:initial;top:0;bottom:0;width:200%}[data-vaul-overlay][data-vaul-snap-points=true]:not([data-vaul-snap-points-overlay=true]):not(
+[data-state=closed]
+){opacity:0}[data-vaul-overlay][data-vaul-snap-points-overlay=true]{opacity:1}[data-vaul-handle]{display:block;position:relative;opacity:.7;background:#e2e2e4;margin-left:auto;margin-right:auto;height:5px;width:32px;border-radius:1rem;touch-action:pan-y}[data-vaul-handle]:active,[data-vaul-handle]:hover{opacity:1}[data-vaul-handle-hitarea]{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100%,2.75rem);height:max(100%,2.75rem);touch-action:inherit}@media (hover:hover) and (pointer:fine){[data-vaul-drawer]{user-select:none}}@media (pointer:fine){[data-vaul-handle-hitarea]:{width:100%;height:100%}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeOut{to{opacity:0}}@keyframes slideFromBottom{from{transform:translate3d(0,var(--initial-transform,100%),0)}to{transform:translate3d(0,0,0)}}@keyframes slideToBottom{to{transform:translate3d(0,var(--initial-transform,100%),0)}}@keyframes slideFromTop{from{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}to{transform:translate3d(0,0,0)}}@keyframes slideToTop{to{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}}@keyframes slideFromLeft{from{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}to{transform:translate3d(0,0,0)}}@keyframes slideToLeft{to{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}}@keyframes slideFromRight{from{transform:translate3d(var(--initial-transform,100%),0,0)}to{transform:translate3d(0,0,0)}}@keyframes slideToRight{to{transform:translate3d(var(--initial-transform,100%),0,0)}}</style>
+</head>
+ <body>
+  <div id="root"><div class="min-h-[100dvh] bg-book-bg" style="perspective: 1500px;"><div class="relative w-full h-[100dvh] overflow-hidden bg-cinematic-bg"><div class="absolute inset-0" style="background: radial-gradient(at 50% 30%, rgba(200, 157, 124, 0.35) 0%, rgba(35, 31, 32, 0.75) 55%, rgba(20, 17, 18, 0.96) 100%);"></div><div class="absolute inset-0 opacity-40" style="background: linear-gradient(rgba(140, 45, 56, 0.25) 0%, transparent 40%, transparent 60%, rgba(0, 0, 0, 0.5) 100%);"></div><div class="grain-overlay"></div><div class="relative z-10 h-full flex flex-col items-center justify-between text-center px-6 py-14 sm:py-20"><div class="mt-6 sm:mt-10"><span class="text-cinematic-accent uppercase tracking-[0.35em] text-[11px] sm:text-xs font-sans">uma homenagem de amor</span></div><div class="flex flex-col items-center max-w-3xl page-reveal"><h1 class="font-heading text-cinematic-fg tracking-[0.08em]" style="font-size: clamp(2.5rem, 9vw, 5rem);">ANTES DE NÓS</h1><div class="deckle-divider max-w-[220px] my-6"></div><p class="font-body italic text-cinematic-fg/85" style="font-size: clamp(1.1rem, 2.5vw, 1.75rem);">Nossa história, desde o primeiro olhar até a vida que construímos juntos</p></div><div class="flex flex-col items-center gap-8"><div class="flex flex-col items-center gap-1"><span class="font-heading text-cinematic-fg/90 text-lg sm:text-xl tracking-wide">Natanael</span><span class="font-body italic text-cinematic-accent text-sm sm:text-base">Para Fernanda</span></div><div class="flex flex-col items-center gap-3"><button class="font-sans bg-cinematic-rose hover:opacity-90 active:scale-[0.98] text-cinematic-fg tracking-wide text-sm sm:text-base px-8 py-4 rounded-full shadow-lg shadow-black/30 transition-all duration-300 min-w-[240px]">Começar nossa história</button></div></div></div></div></div><div role="region" aria-label="Notificações (F8)" tabindex="-1" style="pointer-events: none;"><ol tabindex="-1" class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"></ol></div></div>
+ </body></html>
